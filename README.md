@@ -11,6 +11,7 @@ We will be using the following libraries:
 
 The socket library (and the others) should have been included with your install of Python.
 If not, you can use the following script in your terminal to install the socket library.
+    
     pip install socket
 
 Btw, if you are running Linux and only have access to the terminal, you can use _nano_ or _vim_.
