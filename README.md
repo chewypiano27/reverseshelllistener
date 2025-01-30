@@ -68,10 +68,6 @@ Obviously, the IP will have to be your computer's address.
 
 The port can be whatever you'd like. Obviously, you cannot use a port that is already in use, or you will have an error upon launching the program.
 
-# Video example of intended functionality
-
-https://github.com/user-attachments/assets/8bd5bf9f-c6ea-4278-93f0-f3bfe93de353
-
 # Areas of improvement
 
 This script could be improved by taking the IP and port numbers as an input variable in the CLI. I may action this in the future.
