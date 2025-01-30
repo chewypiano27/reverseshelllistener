@@ -1,6 +1,3 @@
-# reverseshelllistener
-Reverse shell listener akin to netcat
-
 # Introduction
 
 Netcat, a networking tool, facilitates reading & writing to network connections over TCP or UDP.
