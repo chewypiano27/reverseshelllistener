@@ -40,22 +40,25 @@ Then, we print that we are listening on ports, concatenating the port specified.
 After a connection has been made, we print as such, concatenating the address.
 
     while True:
-
-    ans = conn.received(1024).decode()
-    sys.setdefaulttimeout.write(ans)
-    command = input()
+        try:
+            ans = conn.recv(1024).decode()
+            sys.stdout.write(ans + "\n")
+        except ConnectionResetError:
+            print("Connection lost.")
+            break
 
 Next, we create a while loop. Using the variable name ans (short for answer), we decode the received connection so that we can display it in Python. We then take an input from the user.
 
-    command += "\n"
-    conn.send(command.encode())
-    time.sleep(1)
+    command = input("> ")
+        if command.lower() == "exit":
+            print("Closing connection.")
+            conn.close()
+            break
+
+        conn.send((command + "\n").encode())
+        time.sleep(1)
 
 After we get the input from the user, we encode it when we send it (so that it is properly sent). We then create an artificial timeout so that the command is sent properly.
-
-    sys.setdefaulttimeout.write("\033[A" + ans.split("\n")[-1])
-
-We write out the output on our screen, with all denotions supplied.
 
     listen("0.0.0.0",9999)
 
