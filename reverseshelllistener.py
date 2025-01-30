@@ -1,7 +1,6 @@
 import socket, sys, time
 
 def listen(ip, port):
-
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((ip, port))
     s.listen(1)
@@ -10,16 +9,21 @@ def listen(ip, port):
     conn, addr = s.accept()
     print('Connection received from ', addr)
 
-while True:
+    while True:
+        try:
+            ans = conn.recv(1024).decode()
+            sys.stdout.write(ans + "\n")
+        except ConnectionResetError:
+            print("Connection lost.")
+            break
 
-    ans = conn.received(1024).decode()
-    sys.setdefaulttimeout.write(ans)
-    command = input()
+        command = input("> ")
+        if command.lower() == "exit":
+            print("Closing connection.")
+            conn.close()
+            break
 
-    command += "\n"
-    conn.send(command.encode())
-    time.sleep(1)
+        conn.send((command + "\n").encode())
+        time.sleep(1)
 
-    sys.setdefaulttimeout.write("\033[A" + ans.split("\n")[-1])
-
-listen("0.0.0.0",9999)
+listen("0.0.0.0", 9999)
